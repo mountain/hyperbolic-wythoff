@@ -9,6 +9,5 @@ We revised the original program to support the following features:
 * vectorization for faster execution
 * color customization
 
-
-
+<img src="https://raw.githubusercontent.com/mountain/hyperbolic-wythoff/main/tiling.png" width="256px">
 
