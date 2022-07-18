@@ -1,8 +1,9 @@
 import numpy as np
 
+from hypw.typing import Order, Point, Transformation, Planes
 
-def init(p, q, r, t=(-1, -1, -1)):
 
+def init(o: Order, t: Point = (-1, -1, -1)) -> Transformation:
     def refl(vector, mir):
         return vector - 2 * np.dot(vector, mir) * mir
 
@@ -10,11 +11,11 @@ def init(p, q, r, t=(-1, -1, -1)):
         magnitude = np.sqrt(np.abs(np.dot(vector, vector)))
         return vector / magnitude
 
-    A, B, C = np.pi / np.array([p, q, r], dtype=np.float64)
-    a = - np.cos(A)
-    b = + np.sin(A)
-    c = - np.cos(B)
-    d = (- np.cos(C) - a * c) / b
+    alpha, beta, gamma = np.pi / np.array(o, dtype=np.float64)
+    a = - np.cos(alpha)
+    b = + np.sin(alpha)
+    c = - np.cos(beta)
+    d = (- np.cos(gamma) - a * c) / b
     e = 1j * np.sqrt(np.abs(1 - c * c - d * d))
     mirrors = np.array([
         [0, 1, 0],
@@ -34,3 +35,9 @@ def init(p, q, r, t=(-1, -1, -1)):
         mirrors[j] = target
 
     return mirrors
+
+
+def critical_plane(mirrors: Transformation, t: Point = (0, 1, 1)) -> Transformation:
+    u, v, w = mirrors
+    vertex = np.linalg.solve(mirrors, np.array(t))
+    return 1j * np.cross(vertex, v)

@@ -33,3 +33,20 @@ def edged(ps, mirrors):
             ts = ts | (rs >= 3) & (np.abs(geom.inner(ps, u)) < linewidth)
             ps = geom.reflect(ps, m) * pos + ps * neg
     return ts
+
+
+def patterned(ps, mirrors, crticplane, pattern):
+    u, v, w = mirrors
+    rs = np.zeros([width, width, 1], dtype=int)
+    ts = np.zeros([width, width, 1], dtype=int)
+    for count in range(32):
+        for m in [u, v, w]:
+            pos = geom.inner(ps, m) > 0
+            neg = np.logical_not(pos)
+            rs = (rs + 1) * neg
+            ts = np.mod(ts + (rs >= 3) * pattern(geom.inner(ps, crticplane)), pattern.base)
+            ps = geom.reflect(ps, m) * pos + ps * neg
+    return ts
+
+
+

@@ -1,0 +1,40 @@
+[project]
+name = "hypwyth"
+version = "0.0.1"
+description = "hyperbolic wythoff construction"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {file = "LICENSE"}
+keywords = ["hyperbolic", "wythoff", "tilling", "tessellation"]
+authors = [
+  {email = "mingli.yuan@gmail.com"},
+  {name = "Mingli Yuan"}
+]
+maintainers = [
+  {name = "Mingli Yuan", email = "mingli.yuan@gmail.com"}
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
+
+dependencies = [
+  "numpy",
+  "Pillow",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+]
+
+[project.urls]
+homepage = "https://github.com/mountain/hyperbolic-wythoff"
+documentation = "https://github.com/mountain/hyperbolic-wythoff"
+repository = "https://github.com/mountain/hyperbolic-wythoff"
+
+[project.scripts]
+hypw = "hypw:hypw"
+
+[tool.mypy]
+python_version = "3.9"
