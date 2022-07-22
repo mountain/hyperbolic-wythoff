@@ -1,16 +1,18 @@
 import numpy as np
 
-from hypw.typing import Order, Point, Transformation, Planes
+from hypw.typing import Order, Point, Transformation
+
+
+def refl(vector, mir):
+    return vector - 2 * np.dot(vector, mir) * mir
+
+
+def unit(vector):
+    magnitude = np.sqrt(np.abs(np.dot(vector, vector)))
+    return vector / magnitude
 
 
 def init(o: Order, t: Point = (-1, -1, -1)) -> Transformation:
-    def refl(vector, mir):
-        return vector - 2 * np.dot(vector, mir) * mir
-
-    def unit(vector):
-        magnitude = np.sqrt(np.abs(np.dot(vector, vector)))
-        return vector / magnitude
-
     alpha, beta, gamma = np.pi / np.array(o, dtype=np.float64)
     a = - np.cos(alpha)
     b = + np.sin(alpha)
@@ -40,4 +42,4 @@ def init(o: Order, t: Point = (-1, -1, -1)) -> Transformation:
 def critical_plane(mirrors: Transformation, t: Point = (0, 1, 1)) -> Transformation:
     u, v, w = mirrors
     vertex = np.linalg.solve(mirrors, np.array(t))
-    return 1j * np.cross(vertex, v)
+    return np.array([unit(1j * np.cross(vertex, x)) for x in [u, v, w]], dtype=np.complex128)

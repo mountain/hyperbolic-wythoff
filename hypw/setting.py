@@ -1,2 +1,2 @@
-width: int = 2520
+width: int = 256
 linewidth: float = 0.015
