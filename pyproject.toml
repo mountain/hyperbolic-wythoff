@@ -1,3 +1,8 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+backend-path = "."
+
 [project]
 name = "hypwyth"
 version = "0.0.1"
@@ -15,7 +20,18 @@ maintainers = [
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
-  "Programming Language :: Python"
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Education",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Mathematics",
+  "Topic :: Scientific/Engineering :: Visualization"
 ]
 
 dependencies = [
@@ -34,7 +50,7 @@ documentation = "https://github.com/mountain/hyperbolic-wythoff"
 repository = "https://github.com/mountain/hyperbolic-wythoff"
 
 [project.scripts]
-hypw = "hypw:hypw"
+hypw = "hypw.hypw:main_cli"
 
 [tool.mypy]
 python_version = "3.9"

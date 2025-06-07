@@ -32,7 +32,7 @@ def filename(o: Order, form: int, pat: int):
     return '%s%s%s-%d-%03d.png' % (a, b, c, form, pat)
 
 
-if __name__ == '__main__':
+def main_cli():
     import time
 
     parser = argparse.ArgumentParser(description="Generate hyperbolic tilings.")
@@ -59,3 +59,6 @@ if __name__ == '__main__':
                 pil.Image.fromarray(img).save(filename((p, q, r), i, i))
 
     print("time:", time.time() - start)
+
+if __name__ == '__main__':
+    main_cli()
