@@ -7,6 +7,8 @@ from hypw.setting import width, linewidth
 
 
 def checkboard(ps, mirrors):
+    # Implements the "checkboard" style of tiling, creating a binary pattern
+    # based on reflections and region counts.
     u, v, w = mirrors
     rs = np.zeros([width, width, 1], dtype=int)
     ts = np.zeros([width, width, 1], dtype=bool)
@@ -23,6 +25,12 @@ def checkboard(ps, mirrors):
 
 
 def edged(ps, mirrors):
+    # Implements the "edged" style of tiling.
+    # This style highlights the edges of the fundamental regions.
+    # It is achieved by calling the 'patterned' function with a
+    # specific predefined form=(1,0,1) and pattern ID=16.
+    #
+    # The following commented-out code represents a previous, direct implementation attempt.
     #u, v, w = mirrors
     #rs = np.zeros([width, width, 1], dtype=int)
     #ts = np.zeros([width, width, 1], dtype=bool)
@@ -38,6 +46,9 @@ def edged(ps, mirrors):
 
 
 def patterned(ps, mirrors, form, pat):
+    # Implements a versatile, complex styling method based on 'form' and 'pat' (pattern ID) parameters.
+    # 'form' defines critical planes, and 'pat' (a bitmask) controls various aspects
+    # like coloring specific regions or highlighting different types of edges.
     u, v, w = mirrors
     a, b, c = mir.critical_plane(mirrors, form)
 
